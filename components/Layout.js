@@ -7,6 +7,7 @@ import styles from '@/styles/Layout.module.css'
 
 export default function Layout({ title, keywords, description, children }) {
     const router = useRouter()
+    
     return (
         <div>
             <Head>
