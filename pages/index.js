@@ -1,6 +1,7 @@
 // import Link from "next/link";
 // import Head from "next/head";
 import Layout from '@/components/Layout'
+import {API_URL} from '@/config/index'
 
 export default function HomePage() {
   return (
@@ -16,4 +17,16 @@ export default function HomePage() {
       <a href='/about'>About</a> */}
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`${API_URL}/api/events`)
+  const events = await res.json()
+
+  // console.log(events)
+  // if we do console.log here, it's going to show data in terminal here not on client side (localhost)
+  
+  return {
+    props: {}
+  }
 }
