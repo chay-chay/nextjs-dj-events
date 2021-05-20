@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 }
 
 
-export async function getStaticProps({ query: { params: { slug }} }) {
+export async function getStaticProps({  params: { slug }} ) {
   console.log(slug);
   const res = await fetch(`${API_URL}/api/events/${slug}`);
     const events = await res.json();
