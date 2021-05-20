@@ -3,7 +3,8 @@
 import Layout from '@/components/Layout'
 import {API_URL} from '@/config/index'
 
-export default function HomePage() {
+export default function HomePage(events) {
+  console.log(events) 
   return (
     <Layout>
       <h1>Home</h1>
@@ -27,6 +28,6 @@ export async function getServerSideProps() {
   // if we do console.log here, it's going to show data in terminal here not on client side (localhost)
   
   return {
-    props: {}
+    props: {events}
   }
 }
