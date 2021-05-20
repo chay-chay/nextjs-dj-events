@@ -20,7 +20,7 @@ export default function HomePage(events) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(`${API_URL}/api/events`)
   const events = await res.json()
 
@@ -28,6 +28,7 @@ export async function getServerSideProps() {
   // if we do console.log here, it's going to show data in terminal here not on client side (localhost)
   
   return {
-    props: {events}
+    props: { events },
+    revalidate: 1 // if it doesn't find it, it will make the request again to find it 1 second delay when the data has changed
   }
 }
