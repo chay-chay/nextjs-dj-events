@@ -20,15 +20,15 @@ export default function searchPage({events}) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch(`${API_URL}/api/events`);
+export async function getServerSideProps({query: term}) {
+  const res = await fetch(`${API_URL}/api/events?name_contains=${term}`);
+    // we want to be able to set routes when we search = http://localhost:3000/events/search?term=manny
   const events = await res.json();
 
   // console.log(events)
   // if we do console.log here, it's going to show data in terminal here not on client side (localhost)
 
   return {
-    props: { events },
-    revalidate: 1, // if it doesn't find it, it will make the request again to find it 1 second delay when the data has changed
+    props: { events } // no ned revalidate because we don't use static
   };
 }
